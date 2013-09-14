@@ -1,0 +1,2 @@
+src/image/video/
+*.mp4

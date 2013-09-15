@@ -1,0 +1,221 @@
+#tutorial_3d {
+	width: 1920px;
+	height: 1080px;
+	position: absolute;
+	z-index: 100;
+}
+
+#tutorial_navi {
+	display:none;
+	position: absolute;
+	z-index: 50;
+	width: 1280px;
+	height: 796px;
+}
+
+.opening {
+	background-color: black;
+}
+
+.tutorial1 {
+	background: url('../image/tutorial/1.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial2 {
+	background: url('../image/tutorial/2.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial3 {
+	background: url('../image/tutorial/3.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial4 {
+	background: url('../image/tutorial/4.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial5 {
+	background: url('../image/tutorial/5.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial6 {
+	background: url('../image/tutorial/6.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial7 {
+	background: url('../image/tutorial/7.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial8 {
+	background: url('../image/tutorial/8.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial9 {
+	background: url('../image/tutorial/9.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial10 {
+	background: url('../image/tutorial/10.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial11 {
+	background: url('../image/tutorial/11.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial12 {
+	background: url('../image/tutorial/12.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial13 {
+	background: url('../image/tutorial/13.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial14 {
+	background: url('../image/tutorial/14.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial15 {
+	background: url('../image/tutorial/15.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial16 {
+	background: url('../image/tutorial/16.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial17 {
+	background: url('../image/tutorial/17.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial18 {
+	background: url('../image/tutorial/18.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial19 {
+	background: url('../image/tutorial/19.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial20 {
+	background: url('../image/tutorial/20.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial21 {
+	background: url('../image/tutorial/21.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial22 {
+	background: url('../image/tutorial/22.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial23 {
+	background: url('../image/tutorial/23.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial24 {
+	background: url('../image/tutorial/24.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial25 {
+	background: url('../image/tutorial/25.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial26 {
+	background: url('../image/tutorial/26.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial27 {
+	background: url('../image/tutorial/27.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial28 {
+	background: url('../image/tutorial/28.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tutorial28-navi {
+	background: url('../image/tutorial/28-navi.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}

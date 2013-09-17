@@ -7,10 +7,10 @@
 }
 #loading-bar{
 	position: absolute;
-	z-index : 501;
-	margin-top: 644px;
-	margin-left: 478px;
-	height: 15px;
+	z-index: 501;
+	margin-top: 647px;
+	margin-left: 481px;
+	height: 10px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 0px;

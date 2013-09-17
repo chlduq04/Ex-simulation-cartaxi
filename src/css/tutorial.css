@@ -6,7 +6,7 @@
 }
 
 #tutorial_navi {
-	display:none;
+	display: none;
 	position: absolute;
 	z-index: 50;
 	width: 1280px;
@@ -218,4 +218,32 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+#crmk-background {
+	background: url('../image/tutorial/tutorial-background.png');
+	background-size: cover;
+	position: absolute;
+	z-index: 99;
+	width: 1920px;
+	height: 1080px;
+	display:none;
+}
+
+.crmk1 {
+	display: none;
+	margin-top: 284px;
+	margin-left: 250px;
+}
+
+.crmk2 {
+	display: none;
+	margin-top: 288px;
+	margin-left: 400px;
+}
+
+.crmk3 {
+	display: none;
+	margin-top: 450px;
+	margin-left: 250px;
 }

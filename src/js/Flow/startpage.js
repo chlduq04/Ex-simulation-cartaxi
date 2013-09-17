@@ -9,7 +9,7 @@ function startpage(){
 
 	this.initPersent = 0;
 	this.persent = 0;
-	this.targetWidth = 323;
+	this.targetWidth = 317;
 
 	this.init = function(){
 		$("#road").hide();

@@ -3,7 +3,7 @@
 	z-index : 500;
 	width : 1280px;
 	height : 768px;
-	background : url('../image/navigation/loading-background.png');
+	background : url('./image/navigation/loading-background.png');
 }
 #loading-bar{
 	position: absolute;
@@ -14,5 +14,59 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 0px;
-	background: url('../image/navigation/loading-bar.png');
+	background: url('./image/navigation/loading-bar.png');
+}
+#gifBackground{
+	background:black;
+	position: absolute;
+	z-index : 500;
+	width : 1920px;
+	height : 1080px;
+}
+#gifImage{
+	background:black;
+	position: absolute;
+	z-index : 501;
+	width : 1920px;
+	height : 1080px;
+}
+#crmk1{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk2{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk3{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk4{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk5{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk6{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk7{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
+}
+#crmk8{
+	display:none;
+	margin-top: 450px;
+	margin-left: 250px;
 }

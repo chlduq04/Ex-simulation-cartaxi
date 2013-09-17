@@ -34,10 +34,8 @@ window.onload = function() {
 		naviParing : paringPage.paringReady,
 		paringButtonSwitch : paringPage.paringClickSwitch,
 		paring : function(){ 
-			setTimeout(function(){
-				paringPage.paringStart();
-				paringPage.paringLightOn();
-			},6000);
+			paringPage.paringStart();
+			paringPage.paringLightOn();
 		}
 	})
 

@@ -47,7 +47,7 @@ function paringzone(){
 	this.startParingPersent = function(){
 		setTimeout(function(){
 			paring = true;
-		},8000)
+		},10000)
 	}
 	this.paringRedArrowRightSpeed = function(value){
 		redArrowRightSpeed += value;

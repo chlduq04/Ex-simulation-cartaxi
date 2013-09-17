@@ -3,9 +3,15 @@ function tutorial(){
 	this.fadein = 200;
 	this.fadeout = 200;
 	this.timeout = 5000;
+
+	this.crmk1time = 8000;
+	this.crmk2time = 17000;
+	this.crmk3time = 22000;
+
 	this.endingtime = 10000;
 	this.tutorial_count = 1;
-	this.tutorial_start = true;
+	this.crmk_count = 1;
+	this.tutorial_start = false;
 	this.div_3d = $("#tutorial_3d");
 	this.div_navi = $("#tutorial_navi");
 	this.sound = $("#tutorial_effect")[0];
@@ -19,6 +25,26 @@ function tutorial(){
 		setTimeout(function(){
 			self.sound.play();	
 		},200);
+	}
+	this.crmkNext = function(){
+		switch(self.crmk_count){
+		case 1:
+			self.crmk1();
+			break;
+		case 2:
+			self.crmk2();
+			break;
+		case 3:
+			self.crmk3();
+			break;
+		}
+		self.crmk_count++;
+	}
+	this.setTutorialBackground = function(){
+		$("#crmk-background").fadeIn(self.fadein);
+	}
+	this.unsetTutorialBackground = function(){
+		$("#crmk-background").fadeOut(self.fadeOut);
 	}
 	this.tutorialNext = function(number){
 		if(self.tutorial_start){
@@ -351,14 +377,18 @@ function tutorial(){
 	}
 	this.tutorial15 = function(){
 		self.div_3d[0].className = "tutorial15";
+		self.setTutorialBackground();
 		self.div_3d.fadeIn( self.fadein );
 		self.tutorial_count = 16;
 		setTimeout(function(){
 			self.div_3d.fadeOut( self.fadeout ,function(){
+				self.crmkNext();
 				self.tutorialNext();
+				setTimeout(function(){
+					self.setTutorialBackground();
+				},self.crmk1time);
 			} );
 		},self.timeout);
-
 	}
 	this.tutorial16 = function(){
 		self.div_navi[0].className = "tutorial16";
@@ -402,7 +432,10 @@ function tutorial(){
 		self.tutorial_count = 21;
 		setTimeout(function(){
 			self.div_3d.fadeOut( self.fadeout ,function(){
-				self.tutorialNext();
+				self.crmkNext();
+				setTimeout(function(){
+					self.tutorialNext();
+				},self.crmk2time);
 			} );
 		},self.timeout);
 	}
@@ -412,9 +445,13 @@ function tutorial(){
 		self.tutorial_count = 22;
 		setTimeout(function(){
 			self.div_3d.fadeOut( self.fadeout , function(){
+				self.crmkNext();
+				setTimeout(function(){
+					self.unsetTutorialBackground();
+				},self.crmk3time)
 				setTimeout(function(){
 					self.tutorialNext();
-				},self.timeout);
+				},25000);
 			} );
 		},self.timeout);
 	}
@@ -483,5 +520,27 @@ function tutorial(){
 		setTimeout(function(){
 			location.reload();
 		},10000);
+	}
+
+
+	this.crmk1 = function(){
+		$("#crmk1").css({"display":"block"});
+		setTimeout(function(){
+			$("#crmk1").css({"display":"none"});
+		},self.crmk1time)
+	}
+
+	this.crmk2 = function(){
+		$("#crmk2").css({"display":"block"});
+		setTimeout(function(){
+			$("#crmk2").css({"display":"none"});
+		},self.crmk2time)
+	}
+	
+	this.crmk3 = function(){
+		$("#crmk3").css({"display":"block"});
+		setTimeout(function(){
+			$("#crmk3").css({"display":"none"});
+		},self.crmk3time)
 	}
 }

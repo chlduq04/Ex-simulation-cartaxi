@@ -34,6 +34,7 @@ if(jQuery)(function($){
 
 			var renderer;
 			var camara;
+			var bcamera;
 			var target = new THREE.Vector3(), lon = 90, lat = 0, phi = 0, theta = 0;
 			var isUserInteracting = false;
 			var onPointerDownPointerX,onPointerDownPointerY;
@@ -52,6 +53,9 @@ if(jQuery)(function($){
 			var spotlight;
 			var light;
 			
+			var bcamera_lookat = { x : 5, y : 0, z : -100 };
+			var bcamera_position = { x : 5, y : 40, z : 900 };
+			
 			/** Others value **/
 
 			var others_position = { x : -15, y : -120, z : -180 };
@@ -60,7 +64,7 @@ if(jQuery)(function($){
 			var depart_num = 0;
 
 			
-			var road_position = { x : -15, y : -1.0, z : -500 };
+			var road_position = { x : -15, y : 0, z : -500 };
 			var road_scale = { x : defaults.load_width, y : 2, z : defaults.load_length };
 			var road_speed = 20;
 			var road_limit = defaults.map_length * 3;
@@ -70,6 +74,8 @@ if(jQuery)(function($){
 
 			var camera_move = 1;
 			var camera_view_road = false;
+			var camera_posy_move = 0.4;
+			var camera_looky_move = 0.3;
 
 			/** Player position **/
 
@@ -140,7 +146,8 @@ if(jQuery)(function($){
 			this.init = function(){
 				self.settingRender( defaults.width, defaults.height )
 				self.settingCamera( camera_position.x, camera_position.y, camera_position.z, camera_lookat )
-				
+				self.settingBackCamera( bcamera_position.x, bcamera_position.y, bcamera_position.z, bcamera_lookat );
+//				self.backView();
 				self.settingSkybox();
 				self.initCar();
 				self.drawRoad( 1, road_scale, "road" );
@@ -243,6 +250,7 @@ if(jQuery)(function($){
 				renderer.setSize( width, height );
 				renderer.shadowMapEnabled = true;
 				renderer.shadowMapSoft = true;
+				renderer.autoClear = false;
 				canvas = $(this)[0].appendChild( renderer.domElement );
 			}
 			this.settingCamera = function( x, y, z, target ){
@@ -254,7 +262,19 @@ if(jQuery)(function($){
 				);
 				camera.position.set( x, y, z );                 
 				camera.lookAt( target );
+				scene.add(camera);
 			},
+			this.settingBackCamera = function(  x, y, z, target ){
+				bcamera = new THREE.PerspectiveCamera(
+						35,             // Field of view
+						800 / 600,      // Aspect ratio
+						0.1,            // Near plane
+						10000           // Far plane
+				);
+				bcamera.position.set( x, y, z );                 
+				bcamera.lookAt( target );
+				scene.add(bcamera);
+			}
 			this.settingSpotLight = function( color, x, y, z ){
 				spotlight = new THREE.SpotLight( color );
 				spotlight.position.set( x, y, z );
@@ -288,11 +308,23 @@ if(jQuery)(function($){
 //					self.controlMouseWheel(e);
 				});
 			},
-			
+			this.backView = function(){
+				var planeGeometry = new THREE.CubeGeometry( 400, 200, 1, 1 );
+				finalRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );
+				var planeMaterial = new THREE.MeshBasicMaterial( { map: finalRenderTarget } );
+				var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+				scene.add(plane);
+			}
 			this.rendering = function(){
 				self.startRoad(camera_view_road);
+				renderer.setViewport( 0, 0, 1920, 1080);
+				renderer.clear();
+				renderer.setViewport( 0, 0, 1920, 1080);
 				renderer.render( scene, camera );
+				renderer.setViewport( 1600, 900, 320, 180);
+				renderer.render( scene, bcamera );
 			},
+			
 
 			/** audio **/
 
@@ -504,9 +536,13 @@ if(jQuery)(function($){
 					o_positions[name] = player;
 					scene.add( player );
 					camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };
+					bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
 					camera_position = { x : position.x-2, y : position.y+18, z : position.z-1 }
+					bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 }
 					self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat )
-					camera.lookAt(camera_lookat);
+					self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat )
+
+				//	plane.position.set( position.x-2, position.y+18, position.z-10 );
 					camera.fov += 12;
 					camera.updateProjectionMatrix();
 				}else{
@@ -519,8 +555,12 @@ if(jQuery)(function($){
 					if(unparingValue == 0){
 						camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };
 						camera_position = { x : position.x-2, y : position.y+18, z : position.z-1 }
-						self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat )
-						camera.lookAt(camera_lookat);
+						bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
+						bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 };
+						self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat );
+						self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat );
+						
+				//		plane.position.set( position.x-2, position.y+18, position.z-10 );
 						camera.fov += 12;
 						camera.updateProjectionMatrix();
 					}
@@ -783,12 +823,12 @@ if(jQuery)(function($){
 			}
 			this.carParingFirst = function(){
 				unparingValue++;
-				camera_position.z += 2;
-				camera_lookat.z += 2;
-				camera_position.x += 0.5;
-				camera_lookat.x += 0.5;
+				camera_position.z += 5;
+				camera_lookat.z += 5;
+				camera_position.y +=camera_posy_move ;
+				camera_lookat.y += camera_looky_move;
 				self.settingCamera( camera_position.x, camera_position.y, camera_position.z, camera_lookat )
-				if( unparingValue < 150 ){
+				if( unparingValue < 100 ){
 					setTimeout(function(){
 						self.carParingFirst()
 					},10);
@@ -797,13 +837,21 @@ if(jQuery)(function($){
 				}				
 			}
 			this.carParing = function(){
-				camera_position.y += 2;
-				camera_lookat.y += 1.6;
+				if( unparingValue < 200 ){
+					camera_position.z -= 1;
+					camera_lookat.z -= 1;
+				}
+				if( camera_posy_move < 2 ){
+					camera_posy_move *= 1.05;
+					camera_looky_move *= 1.05;
+				}
+				camera_position.y +=camera_posy_move ;
+				camera_lookat.y += camera_looky_move;
 				self.settingCamera( camera_position.x, camera_position.y, camera_position.z, camera_lookat )
 				camera.lookAt(camera_lookat);
 				camera.updateProjectionMatrix();
 				unparingValue++;
-				if( unparingValue < 800 ){
+				if( unparingValue < 700 ){
 					setTimeout(function(){
 						self.carParing()
 					},10);

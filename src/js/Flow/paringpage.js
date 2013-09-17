@@ -18,7 +18,6 @@ function paringpage(){
 	}
 	this.paringStart = function(){
 		$("#paringpage").fadeIn(500);
-
 	}
 	this.paringReady = function( persent ){
 		if( switchPersent ){

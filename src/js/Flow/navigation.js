@@ -23,12 +23,13 @@ function navigation(){
 		$("#bnc-9").click(function(){
 			$("#bottom-navigation-clicked")[0].className = "bottom-navigation-clicked-up-paring-dmb";
 			setTimeout(function(){
-				$("#bnc-video").css({ "display" : "block" });
-				$("#bnc-video")[0].play();
-				$("#bottom-navigation-normal")[0].className = "bottom-navigation-video"
-				setTimeout(function(){
-					tutorials.tutorialNext(18);
-				},7000)
+				$("#bnc-video").fadeIn(1000,function(){
+					$("#bnc-video")[0].play();
+					$("#bottom-navigation-normal")[0].className = "bottom-navigation-video"
+					setTimeout(function(){
+						tutorials.tutorialNext(18);
+					},7000)
+				});
 			},500)
 		});
 		start.setPersent();

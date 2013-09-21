@@ -28,12 +28,19 @@ function Car(id,x,y,limit_speed,goalx,goaly,speedx,speedy,radius,front,back,lead
 	this.rotate = 0;
 	this.line_change_left = false;
 	this.line_change_right = false;
-	this.speed_down = false;
-
-	this.reality_car = Math.floor( Math.random() * 5 ) - 2;
-	this.reality_error = ( Math.floor( Math.random() * 3 ) - 1 ) / 10;
-	this.paring_error_init =  Math.floor( Math.random() * 6 ) + 1;
-	this.paring_error =  Math.floor( Math.random() * 11 ) - 5;
+	this.speed_down = false;	
+	if( id == 0 ){
+		this.reality_car = 0;
+		this.reality_error = 0;
+		this.paring_error_init = 0;
+		this.paring_error = 0;
+	}else{
+		this.reality_car = 2;
+		this.reality_error = 0.1;
+		this.paring_error_init =  3;
+		this.paring_error =  -1;
+	}
+	
 	this.error_check = false;
 }
 
@@ -48,21 +55,6 @@ Car.prototype = {
 						this.realx = this.next_x;
 						this.x = Math.floor(this.realx*10000)*0.0001;			
 						this.line_change = false;
-					}
-				}
-				if(this.front != null){
-					if( this.paring_error_init >= 0 ){
-						this.y += this.paring_error;
-						this.paring_error_init -= 1; 
-					}else{
-						if(!error_check){
-							error_check = true;
-							this.paring_error = -this.paring_error;
-						}else{
-							this.paring_error_init = Math.floor( Math.random() * 6 ) + 1;
-							this.paring_error = Math.floor( Math.random() * 11 ) - 5;
-							error_check = false;
-						}
 					}
 				}
 			}else{

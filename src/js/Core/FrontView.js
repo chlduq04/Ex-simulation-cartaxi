@@ -74,8 +74,8 @@ if(jQuery)(function($){
 
 			var camera_move = 1;
 			var camera_view_road = false;
-			var camera_posy_move = 0.4;
-			var camera_looky_move = 0.3;
+			var camera_posy_move = 0.7;
+			var camera_looky_move = 0.63;
 
 			/** Player position **/
 
@@ -310,19 +310,23 @@ if(jQuery)(function($){
 			},
 			this.backView = function(){
 				var planeGeometry = new THREE.CubeGeometry( 400, 200, 1, 1 );
-				finalRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );
+				var finalRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );
 				var planeMaterial = new THREE.MeshBasicMaterial( { map: finalRenderTarget } );
-				var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+				plane = new THREE.Mesh( planeGeometry, planeMaterial );
 				scene.add(plane);
 			}
 			this.rendering = function(){
 				self.startRoad(camera_view_road);
+				/*
 				renderer.setViewport( 0, 0, 1920, 1080);
 				renderer.clear();
 				renderer.setViewport( 0, 0, 1920, 1080);
+				*/
 				renderer.render( scene, camera );
-				renderer.setViewport( 1600, 900, 320, 180);
+				/*
+				renderer.setViewport( 1500, 800, 420, 280);
 				renderer.render( scene, bcamera );
+				*/
 			},
 			
 
@@ -541,8 +545,8 @@ if(jQuery)(function($){
 					bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 }
 					self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat )
 					self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat )
-
-				//	plane.position.set( position.x-2, position.y+18, position.z-10 );
+					
+//					plane.position.set( position.x-2, position.y+18, position.z-10 );
 					camera.fov += 12;
 					camera.updateProjectionMatrix();
 				}else{
@@ -560,7 +564,7 @@ if(jQuery)(function($){
 						self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat );
 						self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat );
 						
-				//		plane.position.set( position.x-2, position.y+18, position.z-10 );
+//						plane.position.set( position.x-2, position.y+18, position.z-10 );
 						camera.fov += 12;
 						camera.updateProjectionMatrix();
 					}
@@ -749,6 +753,7 @@ if(jQuery)(function($){
 				scene.add( mesh );
 				depart_num++;
 			},
+			
 			this.startDepartments = function(){
 				if( Math.random()*200 > 190 ){
 					self.drawDepartments();
@@ -821,10 +826,11 @@ if(jQuery)(function($){
 				$(".ui").css({"visibility":"hidden"});
 				spotlight.castShadow = false;
 			}
+			
 			this.carParingFirst = function(){
 				unparingValue++;
-				camera_position.z += 5;
-				camera_lookat.z += 5;
+				camera_position.z += 2.5;
+				camera_lookat.z += 2.5;
 				camera_position.y +=camera_posy_move ;
 				camera_lookat.y += camera_looky_move;
 				self.settingCamera( camera_position.x, camera_position.y, camera_position.z, camera_lookat )
@@ -836,11 +842,12 @@ if(jQuery)(function($){
 					self.carParing();
 				}				
 			}
+			
 			this.carParing = function(){
-				if( unparingValue < 200 ){
-					camera_position.z -= 1;
-					camera_lookat.z -= 1;
-				}
+				if( unparingValue < 100 ){
+					camera_position.z -= 0.4;
+					camera_lookat.z -= 0.4;
+				}				
 				if( camera_posy_move < 2 ){
 					camera_posy_move *= 1.05;
 					camera_looky_move *= 1.05;

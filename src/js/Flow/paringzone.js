@@ -3,12 +3,12 @@ function paringzone(){
 	var paringSuccess = false;
 	var redArrowLeft = 5;
 	var redArrowLeftToken = false;
-	var redArrowLeftSpeed = 0.5;
+	var redArrowLeftSpeed = 0.4;
 	var redArrowLeftMax = 70;
 	var redArrowRight = 5;
 	var redArrowRightToken = false;
-	var redArrowRightSpeed = 0.5;
-	var redArrowRightMax = 30;
+	var redArrowRightSpeed = 0.4;
+	var redArrowRightMax = 10;
 
 	var ArrowMove = 70;
 	var paringBar = 0;
@@ -74,8 +74,15 @@ function paringzone(){
 			self.paringRedArrowLeft();
 			if(value != null){
 				ArrowMove += value*2;
-				rotate = ArrowMove/2 - 15;
 			}
+			if(ArrowMove < 60){
+				ArrowMove = 60;
+			}
+			if(ArrowMove > 68){
+				ArrowMove = 68;
+			}
+			rotate = (ArrowMove*8 - 510);
+			
 			$('#ui-center-red').css({"margin-left":ArrowMove+"px"});
 			$("#ui-bar-center-point").css({ "transform":"rotate("+rotate+"deg)" });
 		}
@@ -94,6 +101,10 @@ function paringzone(){
 			var text = Math.floor( paringBar / maximumParingBar * 100 ) + 10;
 			if( text > 98 ){
 				text = 100;
+				$("#ui-center").fadeOut(300,function(){
+					$(this).removeClass("ui-center").addClass("ui-center-success");
+					$(this).fadeIn(300);
+				});
 				prepareParing = false;
 			}
 			$('#ui-bar-center-persent').html(text+"%");
@@ -218,6 +229,7 @@ function paringzone(){
 		$("#ui-center").css({ "display" : "none" });
 	}
 	this.unparingAlert = function(){
+		$("#ui-center").addClass("ui-center-redback");
 		$("#ui-center-bar").addClass("successParingSuccess");
 	}
 

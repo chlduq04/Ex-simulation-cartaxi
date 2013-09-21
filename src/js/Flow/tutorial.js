@@ -4,14 +4,14 @@ function tutorial(){
 	this.fadeout = 200;
 	this.timeout = 5000;
 
-	this.crmk1time = 8000;
-	this.crmk2time = 17000;
-	this.crmk3time = 22000;
+	this.crmk1time = 8000; //8000;
+	this.crmk2time = 17000;//17000;
+	this.crmk3time = 22000;//22000;
 
 	this.endingtime = 10000;
 	this.tutorial_count = 1;
 	this.crmk_count = 1;
-	this.tutorial_start = false;
+	this.tutorial_start = true;
 	this.div_3d = $("#tutorial_3d");
 	this.div_navi = $("#tutorial_navi");
 	this.sound = $("#tutorial_effect")[0];

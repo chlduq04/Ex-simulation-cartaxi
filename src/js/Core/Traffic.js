@@ -93,6 +93,8 @@ function Traffic(opt){
 	this.limit_distance = false;
 	this.paring_button = false;
 	this.startCarTaxi = false;
+	this.finish = false;
+	this.plusSpeedRandom = 298.5;
 	this.defaults = {
 			simulationSpeed : 30,
 			simulationMaxCar : 200,
@@ -188,7 +190,7 @@ Traffic.prototype = {
 						}
 					}
 					this.defaults.paringZonePrepare( object.reality_error );
-					var checkPersent = this.defaults.paringZonePrepareBar(0.4);
+					var checkPersent = this.defaults.paringZonePrepareBar(1);
 					if( checkPersent == 100 ){
 						this.defaults.paringButtonSwitch();
 					}else{
@@ -303,7 +305,12 @@ Traffic.prototype = {
 			}
 
 			object.reality_car += object.reality_error;
-			if( object.reality_car > 4 || object.reality_car < -4 ){
+			if( object.reality_car > 2 ){
+				object.reality_car = 2;
+				object.reality_error = -object.reality_error;
+			}
+			if( object.reality_car < 0 ){
+				object.reality_car = 0;
 				object.reality_error = -object.reality_error;
 			}
 
@@ -320,11 +327,11 @@ Traffic.prototype = {
 					}
 				}else{
 					if(object.leader){
-						this.defaults.drawCarBack3D( { x : object.x - 650 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "leader", object.rotate );
+						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "leader", object.rotate );
 					}else if( object.front != null ){
-						this.defaults.drawCarBack3D( { x : object.x - 650 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate );
+						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate );
 					}else{
-						this.defaults.drawCarBack3D( { x : object.x - 650 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "normal", object.rotate );
+						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "normal", object.rotate );
 					}
 				}
 
@@ -408,6 +415,7 @@ Traffic.prototype = {
 		},
 		desearchMotion : function(){
 			this.paring = false;
+			this.finish = true;
 			this.player.unsignedMember();
 			this.cartaxi.speedy = this.cartaxi.speed_origin_y;
 			this.cartaxi.back = null;
@@ -574,6 +582,15 @@ Traffic.prototype = {
 				this.initCars();
 				length = this.cars.length;
 			}
+			if(this.finish){
+				this.plusSpeedRandom = 295;
+				var searchCars = plus_speed.length;
+				for( var i = 0; i < searchCars ; i++ ){
+					if( Math.random() > 0.5 && !plus_speed[i].leader && plus_speed[i].front != null ){
+						this.searchLink(plus_speed[i].id);
+					}
+				}
+			}
 			this.defaults.render3D();
 			return this.go;
 		},
@@ -667,7 +684,7 @@ Traffic.prototype = {
 							}
 						}
 						if(!checkstart){
-							if(check > 298.5){
+							if(check > this.plusSpeedRandom){
 								var result;
 								if(Math.random() > 0.5){
 									result = 30;

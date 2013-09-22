@@ -1,12 +1,12 @@
 function tutorial(){
 	var self = this;
-	this.fadein = 200;
-	this.fadeout = 200;
-	this.timeout = 5000;
+	this.fadein = 20;
+	this.fadeout = 20;
+	this.timeout = 50;
 
-	this.crmk1time = 8000; //8000;
-	this.crmk2time = 17000;//17000;
-	this.crmk3time = 22000;//22000;
+	this.crmk1time = 8; //8000;
+	this.crmk2time = 17;//17000;
+	this.crmk3time = 22;//22000;
 
 	this.endingtime = 10000;
 	this.tutorial_count = 1;
@@ -68,6 +68,7 @@ function tutorial(){
 						self.tutorial5();
 						break;
 					case 6:
+						simul.startCarTaxi = true;
 						self.tutorial6();
 						break;
 					case 7:
@@ -157,6 +158,7 @@ function tutorial(){
 					self.tutorial5();
 					break;
 				case 6:
+					simul.startCarTaxi = true;
 					self.tutorial6();
 					break;
 				case 7:

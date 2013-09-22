@@ -100,13 +100,36 @@
 
 .ui-center-prepare {
 	position: absolute;
-	width: 0px;
+	width: 555px;
 	height: 110px;
+	/*
 	background: url("../image/3D/paringzone-bar.png");
 	background-size: 465px 200px;
 	background-position: 45px -105px;
 	background-repeat: no-repeat;
+	*/
 }
+
+#ui-center-prepare1 {
+	margin-left: 45px;
+	margin-top: 20px;
+	width: 23px;
+	height: 0px;
+	float:left;
+	background: url("../image/3D/paringzone-bar1.png");
+	background-repeat: no-repeat;
+}
+
+#ui-center-prepare2 {
+	margin-top: 85px;
+	width: 0px;
+	height: 10px;
+	float:left;
+	background: url("../image/3D/paringzone-bar2.png");
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+}
+
 
 .ui-bar-right {
 	float: left;

@@ -825,6 +825,9 @@ if(jQuery)(function($){
 			this.carParingHud = function(){
 				$(".ui").css({"visibility":"hidden"});
 				spotlight.castShadow = false;
+				for(k in road_object.children){
+					road_object.children[k].receiveShadow = false;
+				}
 			}
 			
 			this.carParingFirst = function(){

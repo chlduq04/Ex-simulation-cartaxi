@@ -231,18 +231,21 @@
 }
 
 .crmk1 {
+	opacity:0.5;
 	display: none;
 	margin-top: 284px;
 	margin-left: 250px;
 }
 
 .crmk2 {
+	opacity:0.5;
 	display: none;
 	margin-top: 288px;
 	margin-left: 400px;
 }
 
 .crmk3 {
+	opacity:0.5;
 	display: none;
 	margin-top: 450px;
 	margin-left: 250px;

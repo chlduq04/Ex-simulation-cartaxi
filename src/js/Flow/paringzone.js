@@ -81,7 +81,7 @@ function paringzone(){
 			if(ArrowMove > 68){
 				ArrowMove = 68;
 			}
-			rotate = (ArrowMove*8 - 510);
+			rotate = ArrowMove*8 - 510;
 			
 			$('#ui-center-red').css({"margin-left":ArrowMove+"px"});
 			$("#ui-bar-center-point").css({ "transform":"rotate("+rotate+"deg)" });
@@ -91,12 +91,37 @@ function paringzone(){
 		if(paring){
 			if( paringBar + value > minimumParingBar && paringBar + value < maximumParingBar ){
 				paringBar += value;
-				$('#ui-center-prepare').css({"width":paringBar+"px"});
+				var value = paringBar;
+				if( paringBar < 70 ){
+					$('#ui-center-prepare1').css({"height":value+"px"});										
+				}else if( paringBar >= 70 && paringBar < 75 ){
+					$('#ui-center-prepare1').css({"height":value+"px"});										
+					value -= 47;
+					$('#ui-center-prepare1').css({"width":value+"px"});										
+				}else if( paringBar >= 75 && paringBar < 279 ){
+					value -= 47;
+					$('#ui-center-prepare1').css({"height":"75px"});										
+					$('#ui-center-prepare1').css({"width":value+"px"});										
+				}else if( paringBar >= 279 && paringBar < 488 ){
+					value -= 279;
+					$('#ui-center-prepare1').css({"width":"232px"});										
+					$('#ui-center-prepare2').css({"width":value+"px"});										
+				}else{
+					var revalue;
+					value -= 279;
+					$('#ui-center-prepare2').css({"width":value+"px"});										
+					value -= 199;
+					$('#ui-center-prepare2').css({"height":value+"px"});													
+					value -= 75;					
+					$('#ui-center-prepare2').css({"background-position-y":value+"px"});										
+					revalue = 20-value;
+					$('#ui-center-prepare2').css({"margin-top":revalue+"px"});										
+				}
 			}
 		}
 	}
-	this.prepareParingText = function(value){
-		self.prepareParingBar(value);
+	this.prepareParingText = function( value ){
+		self.prepareParingBar( value*4 );
 		if( prepareParing && paring ){
 			var text = Math.floor( paringBar / maximumParingBar * 100 ) + 10;
 			if( text > 98 ){
@@ -104,6 +129,7 @@ function paringzone(){
 				$("#ui-center").fadeOut(300,function(){
 					$(this).removeClass("ui-center").addClass("ui-center-success");
 					$(this).fadeIn(300);
+					simul.paringArrowStart = true;
 				});
 				prepareParing = false;
 			}

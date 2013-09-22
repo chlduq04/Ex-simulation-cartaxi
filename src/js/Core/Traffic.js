@@ -95,6 +95,7 @@ function Traffic(opt){
 	this.startCarTaxi = false;
 	this.finish = false;
 	this.plusSpeedRandom = 298.5;
+	this.paringArrowStart = false;
 	this.defaults = {
 			simulationSpeed : 30,
 			simulationMaxCar : 200,
@@ -189,7 +190,9 @@ Traffic.prototype = {
 							}
 						}
 					}
-					this.defaults.paringZonePrepare( object.reality_error );
+					if(this.paringArrowStart){
+						this.defaults.paringZonePrepare( object.reality_error );
+					}
 					var checkPersent = this.defaults.paringZonePrepareBar(1);
 					if( checkPersent == 100 ){
 						this.defaults.paringButtonSwitch();

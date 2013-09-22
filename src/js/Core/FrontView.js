@@ -34,7 +34,7 @@ if(jQuery)(function($){
 
 			var renderer;
 			var camara;
-			var bcamera;
+//			var bcamera;
 			var target = new THREE.Vector3(), lon = 90, lat = 0, phi = 0, theta = 0;
 			var isUserInteracting = false;
 			var onPointerDownPointerX,onPointerDownPointerY;
@@ -53,8 +53,8 @@ if(jQuery)(function($){
 			var spotlight;
 			var light;
 			
-			var bcamera_lookat = { x : 5, y : 0, z : -100 };
-			var bcamera_position = { x : 5, y : 40, z : 900 };
+//			var bcamera_lookat = { x : 5, y : 0, z : -100 };
+//			var bcamera_position = { x : 5, y : 40, z : 900 };
 			
 			/** Others value **/
 
@@ -146,8 +146,6 @@ if(jQuery)(function($){
 			this.init = function(){
 				self.settingRender( defaults.width, defaults.height )
 				self.settingCamera( camera_position.x, camera_position.y, camera_position.z, camera_lookat )
-				self.settingBackCamera( bcamera_position.x, bcamera_position.y, bcamera_position.z, bcamera_lookat );
-//				self.backView();
 				self.settingSkybox();
 				self.initCar();
 				self.drawRoad( 1, road_scale, "road" );
@@ -156,6 +154,8 @@ if(jQuery)(function($){
 				self.settingKey();
 				self.settingMouse();
 
+//				self.settingBackCamera( bcamera_position.x, bcamera_position.y, bcamera_position.z, bcamera_lookat );
+//				self.backView();
 //				self.drawOther( others_position, others_scale, "others" );
 
 				renderer.render( scene, camera );
@@ -250,7 +250,7 @@ if(jQuery)(function($){
 				renderer.setSize( width, height );
 				renderer.shadowMapEnabled = true;
 				renderer.shadowMapSoft = true;
-				renderer.autoClear = false;
+				renderer.autoClear = true;
 				canvas = $(this)[0].appendChild( renderer.domElement );
 			}
 			this.settingCamera = function( x, y, z, target ){
@@ -317,16 +317,7 @@ if(jQuery)(function($){
 			}
 			this.rendering = function(){
 				self.startRoad(camera_view_road);
-				/*
-				renderer.setViewport( 0, 0, 1920, 1080);
-				renderer.clear();
-				renderer.setViewport( 0, 0, 1920, 1080);
-				*/
 				renderer.render( scene, camera );
-				/*
-				renderer.setViewport( 1500, 800, 420, 280);
-				renderer.render( scene, bcamera );
-				*/
 			},
 			
 
@@ -540,11 +531,11 @@ if(jQuery)(function($){
 					o_positions[name] = player;
 					scene.add( player );
 					camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };
-					bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
 					camera_position = { x : position.x-2, y : position.y+18, z : position.z-1 }
-					bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 }
 					self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat )
-					self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat )
+//					bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
+//					bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 }
+//					self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat )
 					
 //					plane.position.set( position.x-2, position.y+18, position.z-10 );
 					camera.fov += 12;
@@ -559,10 +550,10 @@ if(jQuery)(function($){
 					if(unparingValue == 0){
 						camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };
 						camera_position = { x : position.x-2, y : position.y+18, z : position.z-1 }
-						bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
-						bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 };
 						self.settingCamera( position.x-2, position.y+18, position.z-1, camera_lookat );
-						self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat );
+//						bcamera_lookat = { x : position.x-2, y : position.y+17, z : position.z+30 };
+//						bcamera_position = { x : position.x-2, y : position.y+18, z : position.z+10 };
+//						self.settingBackCamera( position.x-2, position.y+18, position.z+10, bcamera_lookat );
 						
 //						plane.position.set( position.x-2, position.y+18, position.z-10 );
 						camera.fov += 12;
@@ -825,9 +816,9 @@ if(jQuery)(function($){
 			this.carParingHud = function(){
 				$(".ui").css({"visibility":"hidden"});
 				spotlight.castShadow = false;
-//				for(k in road_object.children){
-//					road_object.children[k].receiveShadow = false;
-//				}
+					for(k in road_object.children){
+						road_object.children[k].receiveShadow = false;
+					}
 			}
 			
 			this.carParingFirst = function(){

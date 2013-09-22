@@ -121,7 +121,7 @@ function paringzone(){
 		}
 	}
 	this.prepareParingText = function( value ){
-		self.prepareParingBar( value*2 );
+		self.prepareParingBar( value * 1.2 );
 		if( prepareParing && paring ){
 			var text = Math.floor( paringBar / maximumParingBar * 100 ) + 10;
 			if( text > 98 ){

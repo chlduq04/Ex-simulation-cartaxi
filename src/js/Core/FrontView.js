@@ -536,7 +536,7 @@ if(jQuery)(function($){
 					player.position.z = position.z;
 					player.scale.x = 0.128;
 					player.scale.y = 0.16
-					player.scale.z = 0.096;
+					player.scale.z = 0.12;
 					o_positions[name] = player;
 					scene.add( player );
 					camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };
@@ -591,7 +591,7 @@ if(jQuery)(function($){
 					mesh.position.z = position.z;
 					mesh.scale.x = 0.128;
 					mesh.scale.y = 0.16
-					mesh.scale.z = 0.096;
+					mesh.scale.z = 0.12;
 
 					o_positions[name] = mesh;
 				}else{
@@ -632,7 +632,7 @@ if(jQuery)(function($){
 
 					mesh.scale.x = 0.128;
 					mesh.scale.y = 0.16
-					mesh.scale.z = 0.096;
+					mesh.scale.z = 0.12;
 					mesh.rotation.y = Math.PI;
 
 					o_positions[name] = mesh;
@@ -825,9 +825,9 @@ if(jQuery)(function($){
 			this.carParingHud = function(){
 				$(".ui").css({"visibility":"hidden"});
 				spotlight.castShadow = false;
-				for(k in road_object.children){
-					road_object.children[k].receiveShadow = false;
-				}
+//				for(k in road_object.children){
+//					road_object.children[k].receiveShadow = false;
+//				}
 			}
 			
 			this.carParingFirst = function(){

@@ -423,6 +423,7 @@ Traffic.prototype = {
 			this.cartaxi.speedy = this.cartaxi.speed_origin_y;
 			this.cartaxi.back = null;
 			this.out = true;
+			this.time = -100;
 			$("#car"+this.cartaxi.id+"-over").fadeOut(500);
 		},
 		moveBackground : function(){
@@ -589,7 +590,7 @@ Traffic.prototype = {
 				this.plusSpeedRandom = 295;
 				var searchCars = plus_speed.length;
 				for( var i = 0; i < searchCars ; i++ ){
-					if( Math.random() > 0.5 && !plus_speed[i].leader && plus_speed[i].front != null ){
+					if( plus_speed[i].id ! = 0 && Math.random() > 0.5 && !plus_speed[i].leader && plus_speed[i].front != null ){
 						this.searchLink(plus_speed[i].id);
 					}
 				}

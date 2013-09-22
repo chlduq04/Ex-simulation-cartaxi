@@ -121,13 +121,13 @@ function paringzone(){
 		}
 	}
 	this.prepareParingText = function( value ){
-		self.prepareParingBar( value*4 );
+		self.prepareParingBar( value*2 );
 		if( prepareParing && paring ){
 			var text = Math.floor( paringBar / maximumParingBar * 100 ) + 10;
 			if( text > 98 ){
 				text = 100;
 				$("#ui-center").fadeOut(300,function(){
-					$(this).removeClass("ui-center").addClass("ui-center-success");
+					$(this).removeClass("prepareParingSuccess").addClass("ui-center-success");
 					$(this).fadeIn(300);
 					simul.paringArrowStart = true;
 				});
@@ -155,6 +155,7 @@ function paringzone(){
 		self.paringPersentSpd();
 //		self.paringPersentHpa();
 	}
+
 	this.unparingPrepare = function(){
 		$("#ui-bar-center-arrow").css({"display":"none"});
 		self.unparingAlert();
@@ -178,6 +179,7 @@ function paringzone(){
 			},1000);
 		});
 	}
+	
 	this.paringPersentSpd = function(){
 		if( nowSpeed + initSpeed > limitSpeed && nowSpeed + initSpeed < 200 ){
 			initSpeed += nowSpeed;
@@ -255,7 +257,6 @@ function paringzone(){
 		$("#ui-center").css({ "display" : "none" });
 	}
 	this.unparingAlert = function(){
-		$("#ui-center").addClass("ui-center-redback");
 		$("#ui-center-bar").addClass("successParingSuccess");
 	}
 

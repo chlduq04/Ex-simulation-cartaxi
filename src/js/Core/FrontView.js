@@ -842,7 +842,7 @@ if(jQuery)(function($){
 					camera_position.z -= 0.4;
 					camera_lookat.z -= 0.4;
 				}				
-				if( camera_posy_move < 2 ){
+				if( camera_posy_move < 2.4 ){
 					camera_posy_move *= 1.05;
 					camera_looky_move *= 1.05;
 				}
@@ -857,7 +857,9 @@ if(jQuery)(function($){
 						self.carParing()
 					},10);
 				}else{
-					tutorials.tutorialNext(28);
+					setTimeout(function(){
+						tutorials.tutorialNext(28);
+					},5000);
 				}
 			}
 			

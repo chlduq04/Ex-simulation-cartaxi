@@ -64,10 +64,12 @@
 	display: none;
 }
 .prepareParingSuccessBack {
+	margin-top: 65px;
+	margin-left: 108px;
 	float: left;
 	width: 555px;
 	height: 110px;
-	background: url("../image/3D/paringzone-success.png");
+	background: url("../image/3D/paringzone-aramback.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }

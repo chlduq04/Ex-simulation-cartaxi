@@ -3,8 +3,7 @@ var start;
 var front;
 var navi;
 var simul;
-window.onload = function() {
-	
+window.onload = function() {	
 	tutorials = new tutorial();
 	start = new startpage();
 	front = new $(".view_3d").WebGL();

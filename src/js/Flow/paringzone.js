@@ -257,6 +257,7 @@ function paringzone(){
 		$("#ui-center").css({ "display" : "none" });
 	}
 	this.unparingAlert = function(){
+		$("#ui-center").removeClass("ui-center ui-center-success prepareParingSuccess").addClass("prepareParingSuccessBack");
 		$("#ui-center-bar").addClass("successParingSuccess");
 	}
 

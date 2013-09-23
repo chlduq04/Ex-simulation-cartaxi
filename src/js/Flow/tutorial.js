@@ -1,14 +1,14 @@
 function tutorial(){
 	var self = this;
-	this.fadein = 20;//0;
-	this.fadeout = 20;//0;
-	this.timeout = 50;//00;
-	this.timeout1 = 40;//00;
-	this.timeout2 = 30;//00;
+	this.fadein = 200;
+	this.fadeout = 200;
+	this.timeout = 5000;
+	this.timeout1 = 4000;
+	this.timeout2 = 3000;
 
-	this.crmk1time = 80;//00; //8000;
-	this.crmk2time = 170;//00;//17000;
-	this.crmk3time = 220;//00;//22000;
+	this.crmk1time = 8000;//8000;
+	this.crmk2time = 17000;//17000;
+	this.crmk3time = 22000;//22000;
 
 	this.endingtime = 10000;
 	this.tutorial_count = 1;

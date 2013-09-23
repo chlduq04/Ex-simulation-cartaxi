@@ -321,24 +321,43 @@ Traffic.prototype = {
 			if(object.player){
 				this.defaults.drawPlayer( { x : object.x - 650, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate, object.reality_error );
 			}else{
-				if( object.x < this.defaults.lineSize ){
-					if(object.leader){
-						this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : (object.y - 320) * 8 }, object.id, "leader", object.rotate );
-					}else if( object.front != null ){
-						this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 8 }, object.id, "follower", object.rotate );
+				if(!this.finish){
+					if( object.x < this.defaults.lineSize ){
+						if(object.leader){
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : (object.y - 320) * 8 }, object.id, "leader", object.rotate );
+						}else if( object.front != null ){
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 8 }, object.id, "follower", object.rotate );
+						}else{
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 8 }, object.id, "normal", object.rotate );
+						}
 					}else{
-						this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 8 }, object.id, "normal", object.rotate );
+						if(object.leader){
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "leader", object.rotate );
+						}else if( object.front != null ){
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate );
+						}else{
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "normal", object.rotate );
+						}
 					}
 				}else{
-					if(object.leader){
-						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "leader", object.rotate );
-					}else if( object.front != null ){
-						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate );
+					if( object.x < this.defaults.lineSize ){
+						if(object.leader){
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : (object.y - 320) * 6 }, object.id, "leader", object.rotate );
+						}else if( object.front != null ){
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 6 }, object.id, "follower", object.rotate );
+						}else{
+							this.defaults.drawCar3D( { x : object.x - 632 + object.reality_car, y : 0, z : ( object.y - 320 ) * 6 }, object.id, "normal", object.rotate );
+						}
 					}else{
-						this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "normal", object.rotate );
+						if(object.leader){
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "leader", object.rotate );
+						}else if( object.front != null ){
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "follower", object.rotate );
+						}else{
+							this.defaults.drawCarBack3D( { x : object.x - 652 + object.reality_car, y : 0, z : ( object.y - 320 ) * 3 }, object.id, "normal", object.rotate );
+						}
 					}
 				}
-
 			}
 		},
 
@@ -365,7 +384,7 @@ Traffic.prototype = {
 			var length = car.length;
 			var leader = null;
 			var follower = null;
-			for(var i=0;i<length;i++){
+			for( var i=0 ; i<length ; i++ ){
 				if(leader == null && car[i].id == id){
 					leader = car[i];
 				}
@@ -376,7 +395,7 @@ Traffic.prototype = {
 					break;
 				}
 			}
-			leader.addMember(follower);
+			leader.addMember(follower,0);
 		},
 		searchLink : function( id ){
 			var car;
@@ -649,15 +668,6 @@ Traffic.prototype = {
 			},200);
 		},
 		startparing : function( result ){
-//			var delCar = [];
-//			for( var i = 0, length = this.cars.length ; i < length ; i++ ){
-//				if( this.cars[i].speedy < 0 && this.cars[i].y > 600 ){
-//					delCar.push( i );
-//				}
-//			}
-//			for( var i = 0, length = delCar.length ; i < length ; i++ ){
-//				this.deleteCars( delCar[i] );
-//			}
 			var speed = this.defaults.simulationMaxSpeed + 2;
 			this.cartaxi = this.newCars( result*this.defaults.pixelLarge, 720, this.defaults.simulationMaxSpeed*30, result*this.defaults.pixelLarge, 1, 0, -speed, this.defaults.pixelLarge, true );
 			this.limit_distance = true;
@@ -680,33 +690,68 @@ Traffic.prototype = {
 			}else{
 				if(this.cars.length < this.max_car){
 					var check = Math.floor(Math.random()*300);
-					if(check > this.plusSpeedRandomInit){
+					if( check > this.plusSpeedRandomInit ){
 						var checkstart = false;
 						var cars_length = this.cars.length;
-						for(var i=0;i<cars_length;i++){
-							if( this.cars[i].y - 1 < this.defaults.pixelLarge * 2 ){
-								checkstart = true;
-								break;
+						if(!this.finish){
+							for( var i = 0 ; i < cars_length ; i++ ){
+								if( this.cars[i].y - 1 < this.defaults.pixelLarge * 2 ){
+									checkstart = true;
+									break;
+								}
 							}
-						}
-						if(!checkstart){
-							if(check > this.plusSpeedRandom){
+							if(!checkstart){
+								if(check > this.plusSpeedRandom){
+									var result;
+									if(Math.random() > 0.5){
+										result = 30;
+									}else{
+										result = 34;
+									}
+									this.newCars( result*this.defaults.pixelLarge, 1, this.defaults.simulationMaxSpeed*2, result*this.defaults.pixelLarge, 720, 0, this.defaults.simulationMaxSpeed+4, this.defaults.pixelLarge, true );
+								}else{
+									var speed = Math.random() * 1 + this.defaults.simulationMaxSpeed + 5;
+									if(Math.random() > 0.5){
+										result = 30;
+									}else{
+										result = 34;
+									}
+									this.newCars( result*this.defaults.pixelLarge, 1, this.defaults.simulationMaxSpeed*4, result*this.defaults.pixelLarge, 720, 0, speed, this.defaults.pixelLarge, false );
+								}								
+							}
+						}else{
+							for(var i=0;i<cars_length;i++){
+								if( this.cars[i].y - 1 < this.defaults.pixelLarge * 8 ){
+									checkstart = true;
+									break;
+								}
+							}
+							if(!checkstart){
 								var result;
 								if(Math.random() > 0.5){
 									result = 30;
 								}else{
 									result = 34;
-								}
-								this.newCars( result*this.defaults.pixelLarge, 1, this.defaults.simulationMaxSpeed*2, result*this.defaults.pixelLarge, 720, 0, this.defaults.simulationMaxSpeed+4, this.defaults.pixelLarge, true );
-							}else{
-								var speed = Math.random() * 1 + this.defaults.simulationMaxSpeed + 5;
-								if(Math.random() > 0.5){
-									result = 30;
+								}							
+								var ran = Math.floor( Math.random()*3 ) + 1;//
+								if( ran == 1 ){
+									this.newCars( result*simul.defaults.pixelLarge, 1, simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false );
 								}else{
-									result = 34;
+									var leader;
+									for( var i = 0 ; i < ran ; i++ ){
+										if( i == ran-1 ){
+											this.newCars( result*simul.defaults.pixelLarge, 1, simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false );
+										}else if( i == 0 ){
+											leader = this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 3 * (ran-1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, true );
+										}else{
+											this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 3 * (ran - i - 1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false );
+										}
+									}
+									for( var i = 0 ; i < ran-1 ; i++ ){
+										this.searchLink(leader.id+i+1);
+									}
 								}
-								this.newCars( result*this.defaults.pixelLarge, 1, this.defaults.simulationMaxSpeed*4, result*this.defaults.pixelLarge, 720, 0, speed, this.defaults.pixelLarge, false );
-							}								
+							}
 						}
 					}else if(check < 2){
 						if(!this.startCarTaxi){

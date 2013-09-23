@@ -73,7 +73,7 @@ Car.prototype = {
 						if( lengthy < -6){ lengthy = -6; }
 						var checkx = Math.abs(lengthx);
 						var checky = Math.abs(lengthy);
-						if( checkx < 0.07 && checky < 0.07 ){
+						if( checkx < 0.05 && checky < 0.05 ){
 							this.linking = true;
 							this.speedx = this.front.speedx;
 							this.speedy = this.front.speedy;
@@ -168,7 +168,7 @@ Car.prototype = {
 				}else{
 					var front_check = false;
 					for( var car in other_cars ){
-						if(  Math.floor(Math.abs( checky - other_cars[car].y )) <= checkr * 3 &&  Math.floor(Math.abs( checkx - other_cars[car].x )) <= checkr * 3 && other_cars[car].line_change ){
+						if(  Math.floor( Math.abs( checky - other_cars[car].y )) <= checkr * 3 &&  Math.floor( Math.abs( checkx - other_cars[car].x )) <= checkr * 3 && other_cars[car].line_change ){
 							this.speedy = other_cars[car].speedy;
 							front_check = true;
 							break;
@@ -200,8 +200,8 @@ Car.prototype = {
 									if(this.line_change){
 										this.line_change_left = true;
 										this.next_x = this.x - this.radius * 4;
-										this.speedy -= 0.5;
-										this.speedx = - 0.5;
+										this.speedy = 3;
+										this.speedx = -0.5;
 										this.rotate = 30;
 									}else{
 										this.speedy = other_cars[car].speedy;
@@ -221,8 +221,8 @@ Car.prototype = {
 									if(this.line_change){
 										this.line_change_right = true;
 										this.next_x = this.x + this.radius * 4;
-										this.speedy -= 0.5;
-										this.speedx = + 0.5;
+										this.speedy = 3;
+										this.speedx = +0.5;
 										this.rotate = -30;
 									}else{
 										this.speedy = other_cars[car].speedy;

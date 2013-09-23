@@ -714,7 +714,7 @@ if(jQuery)(function($){
 			this.startRoad = function(position){
 				if(position){
 					self.carUnparing();
-					road_speed = 12;
+					road_speed = 8;
 					o_positions['road'].position.z =  1400;
 					o_positions['road'].position.z += road_speed;
 					player.rotation.y = -Math.PI/12;
@@ -816,9 +816,9 @@ if(jQuery)(function($){
 			this.carParingHud = function(){
 				$(".ui").css({"visibility":"hidden"});
 				spotlight.castShadow = false;
-					for(k in road_object.children){
-						road_object.children[k].receiveShadow = false;
-					}
+				for(k in road_object.children){
+					road_object.children[k].receiveShadow = false;
+				}
 			}
 			
 			this.carParingFirst = function(){
@@ -859,7 +859,7 @@ if(jQuery)(function($){
 				}else{
 					setTimeout(function(){
 						tutorials.tutorialNext(28);
-					},5000);
+					},10000);
 				}
 			}
 			

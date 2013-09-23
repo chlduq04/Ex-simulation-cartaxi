@@ -95,6 +95,7 @@ function Traffic(opt){
 	this.startCarTaxi = false;
 	this.finish = false;
 	this.plusSpeedRandom = 298.5;
+	this.plusSpeedRandomInit = 290;
 	this.paringArrowStart = false;
 	this.defaults = {
 			simulationSpeed : 30,
@@ -423,7 +424,7 @@ Traffic.prototype = {
 			this.cartaxi.speedy = this.cartaxi.speed_origin_y;
 			this.cartaxi.back = null;
 			this.out = true;
-			this.time = 300;
+			this.time = -700;
 			$("#car"+this.cartaxi.id+"-over").fadeOut(500);
 		},
 		moveBackground : function(){
@@ -588,6 +589,7 @@ Traffic.prototype = {
 			}
 			if(this.finish){
 				this.plusSpeedRandom = 295;
+				this.plusSpeedRandomInit = 280;
 				var searchCars = plus_speed.length;
 				for( var i = 0; i < searchCars ; i++ ){
 					if( plus_speed[i].id != 0 && Math.random() > 0.5 && !plus_speed[i].leader && plus_speed[i].front != null ){
@@ -678,7 +680,7 @@ Traffic.prototype = {
 			}else{
 				if(this.cars.length < this.max_car){
 					var check = Math.floor(Math.random()*300);
-					if(check > 290){
+					if(check > this.plusSpeedRandomInit){
 						var checkstart = false;
 						var cars_length = this.cars.length;
 						for(var i=0;i<cars_length;i++){

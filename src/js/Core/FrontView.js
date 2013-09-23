@@ -527,7 +527,7 @@ if(jQuery)(function($){
 					player.position.z = position.z;
 					player.scale.x = 0.128;
 					player.scale.y = 0.16
-					player.scale.z = 0.12;
+					player.scale.z = 0.096;
 					o_positions[name] = player;
 					scene.add( player );
 					camera_lookat = { x : position.x-2, y : position.y+17, z : position.z-30 };

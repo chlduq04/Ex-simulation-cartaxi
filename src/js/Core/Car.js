@@ -1,4 +1,4 @@
-function Car(id,x,y,limit_speed,goalx,goaly,speedx,speedy,radius,front,back,leader){
+function Car(id,x,y,limit_speed,goalx,goaly,speedx,speedy,radius,front,back,leader,finish){
 	this.id = id;
 	this.limit_speed = limit_speed;
 	this.x = x;
@@ -40,7 +40,7 @@ function Car(id,x,y,limit_speed,goalx,goaly,speedx,speedy,radius,front,back,lead
 		this.paring_error_init =  3;
 		this.paring_error =  -1;
 	}
-	
+	this.finish = finish;
 	this.error_check = false;
 }
 
@@ -244,7 +244,7 @@ Car.prototype = {
 						}
 					}
 				}
-				if(!crash){
+				if(!crash || this.finish){
 					this.move(0,0);
 				}
 			}
@@ -379,7 +379,7 @@ Car.prototype = {
 						}
 					}
 				}
-				if(!crash){
+				if(!crash || this.finish){
 					this.move(0,0);
 				}
 			}

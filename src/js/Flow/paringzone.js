@@ -181,7 +181,7 @@ function paringzone(){
 	}
 	
 	this.paringPersentSpd = function(){
-		if( nowSpeed + initSpeed > limitSpeed && nowSpeed + initSpeed < 200 ){
+		if( nowSpeed + initSpeed > limitSpeed && nowSpeed + initSpeed < 200 && speedValue < 95 ){
 			initSpeed += nowSpeed;
 			leftSpeed -= nowSpeed;
 			$("#ui-bar-left-persent").css({

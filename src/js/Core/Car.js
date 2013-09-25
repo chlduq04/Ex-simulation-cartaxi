@@ -40,7 +40,7 @@ function Car(id,x,y,limit_speed,goalx,goaly,speedx,speedy,radius,front,back,lead
 		this.paring_error_init =  3;
 		this.paring_error =  -1;
 	}
-	this.finish = finish;
+	this.finished = finish;
 	this.error_check = false;
 }
 
@@ -135,7 +135,9 @@ Car.prototype = {
 			var checky = this.y + this.speedy;
 			var checkr = this.radius;
 			if( this.front == null || ( this.leader && this.back == null )){
-				if( this.line_change ){
+				if(this.finished){
+					this.move(0,0);
+				}else if( this.line_change ){
 					if( Math.abs(this.next_x - this.x) > 32 ){
 						if(this.line_change_left){
 							this.rotate = 10;
@@ -244,7 +246,7 @@ Car.prototype = {
 						}
 					}
 				}
-				if(!crash || this.finish){
+				if(!crash){
 					this.move(0,0);
 				}
 			}
@@ -260,7 +262,9 @@ Car.prototype = {
 				this.speedy = 0;
 				this.move(0,0);
 			}else if( this.front == null || ( this.leader && this.back == null )){
-				if( this.line_change ){
+				if(this.finished){
+					this.move(0,0);
+				}else if( this.line_change ){
 					if( Math.abs(this.next_x - this.x) > 32 ){
 						if(this.line_change_left){
 							this.rotate = 10;
@@ -379,7 +383,7 @@ Car.prototype = {
 						}
 					}
 				}
-				if(!crash || this.finish){
+				if(!crash){
 					this.move(0,0);
 				}
 			}

@@ -364,8 +364,8 @@ Traffic.prototype = {
 		resetCars : function(){
 			this.car_road.children().remove();
 		},
-		newCars : function( x,y,limit_speed,goalx,goaly,speedx,speedy,radius,leader ){
-			var car = new Car( this.id++, x, y, limit_speed, goalx, goaly, speedx, speedy, radius, null, null, leader )
+		newCars : function( x,y,limit_speed,goalx,goaly,speedx,speedy,radius,leader,finish ){
+			var car = new Car( this.id++, x, y, limit_speed, goalx, goaly, speedx, speedy, radius, null, null, leader, finish )
 			this.cars.push( car );
 			return car;
 		},
@@ -724,9 +724,9 @@ Traffic.prototype = {
 										if( i == ran-1 ){
 											this.newCars( result*simul.defaults.pixelLarge, 1, simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false, true );
 										}else if( i == 0 ){
-											leader = this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 3 * (ran-1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, true, true );
+											leader = this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 2 * (ran-1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, true, true );
 										}else{
-											this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 3 * (ran - i - 1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false, true );
+											this.newCars( result*simul.defaults.pixelLarge, simul.defaults.pixelLarge * 2 * (ran - i - 1), simul.defaults.simulationMaxSpeed*2, result*simul.defaults.pixelLarge, 720, 0, simul.defaults.simulationMaxSpeed+3, simul.defaults.pixelLarge, false, true );
 										}
 									}
 									for( var i = 0 ; i < ran-1 ; i++ ){

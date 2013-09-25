@@ -714,7 +714,7 @@ if(jQuery)(function($){
 			this.startRoad = function(position){
 				if(position){
 					self.carUnparing();
-					road_speed = 8;
+					road_speed = 12;
 					o_positions['road'].position.z =  1400;
 					o_positions['road'].position.z += road_speed;
 					player.rotation.y = -Math.PI/12;

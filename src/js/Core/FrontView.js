@@ -833,6 +833,7 @@ if(jQuery)(function($){
 						self.carParingFirst()
 					},10);
 				}else{
+					tutorials.tutorial28Navi();
 					self.carParing();
 				}				
 			}

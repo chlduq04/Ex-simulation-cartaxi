@@ -5,16 +5,6 @@ function Traffic(opt){
 	this.id = 0;
 	this.link_id = 0;
 	this.cars = [];
-	this.sortCars;
-	this.sortLinks;
-	this.car_road;
-	this.object_div; 
-	this.car_image_right;
-	this.leader_image_right;
-	this.follower_image_right;
-	this.car_image_left;
-	this.leader_image_left;
-	this.follower_image_left;
 	this.testroad = [
 	                 [0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,9,3,8,8, -1,8,8,8,-1,8,2,8,1,8, 8,8,1,8,8,3,9,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0],
 	                 [0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,9,3,8,8, -1,8,8,8,-1,8,2,8,1,8, 8,8,1,8,8,3,9,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0],
@@ -92,7 +82,7 @@ function Traffic(opt){
 	this.out = false;
 	this.limit_distance = false;
 	this.paring_button = false;
-	this.startCarTaxi = false;
+	this.startCarTaxi = true;
 	this.finish = false;
 	this.plusSpeedRandom = 298.5;
 	this.plusSpeedRandomInit = 290;
@@ -141,7 +131,7 @@ Traffic.prototype = {
 			this.newCars( result*this.defaults.pixelLarge, 560, 4, result*this.defaults.pixelLarge, 600, 0, 0, this.defaults.pixelLarge, false, false );
 			this.cars[0].player = true;
 			this.player = this.cars[0];
-			start.setPersent();
+//			start.setPersent();
 		},
 		drawCars : function( object ){
 			var car = $("#car"+object.id);
@@ -445,7 +435,7 @@ Traffic.prototype = {
 			this.out = true;
 			this.plusSpeedRandom = 290;
 			this.plusSpeedRandomInit = 265;
-			this.time = -700;
+			this.time = -900;
 			$("#car"+this.cartaxi.id+"-over").fadeOut(500);
 		},
 		moveBackground : function(){
@@ -651,9 +641,9 @@ Traffic.prototype = {
 		},
 		startparing : function( result ){
 			var speed = this.defaults.simulationMaxSpeed + 2;
+			this.startCarTaxi = true;
 			this.cartaxi = this.newCars( result*this.defaults.pixelLarge, 720, this.defaults.simulationMaxSpeed*30, result*this.defaults.pixelLarge, 1, 0, -speed, this.defaults.pixelLarge, true, false );
 			this.limit_distance = true;
-			this.startCarTaxi = true;
 			this.defaults.paring();
 			this.defaults.paringZoneRedArrowStart();
 		},

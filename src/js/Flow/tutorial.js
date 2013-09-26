@@ -2,13 +2,13 @@ function tutorial(){
 	var self = this;
 	this.fadein = 200;
 	this.fadeout = 200;
-	this.timeout = 5000;
-	this.timeout1 = 4000;
-	this.timeout2 = 3000;
+	this.timeout = 6000;
+	this.timeout1 = 5000;
+	this.timeout2 = 4000;
 
-	this.crmk1time = 8000;//8000;
-	this.crmk2time = 17000;//17000;
-	this.crmk3time = 22000;//22000;
+	this.crmk1time = 8000;	//8000;
+	this.crmk2time = 17000;	//17000;
+	this.crmk3time = 22000;	//22000;
 
 	this.endingtime = 10000;
 	this.tutorial_count = 1;
@@ -22,7 +22,7 @@ function tutorial(){
 		self.div_navi.click(function(){
 			$(this).fadeOut(self.fadeout);
 		});
-		*/
+	*/
 		self.tutorialNext();
 	}
 	this.soundPlay = function(){
@@ -332,6 +332,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial10 = function(){
 		self.div_3d[0].className = "tutorial10";
 		self.div_3d.fadeIn( self.fadein );
@@ -342,14 +343,16 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial11 = function(){
 		self.div_navi[0].className = "tutorial11";
 		self.div_navi.fadeIn( self.fadein );
 		self.tutorial_count = 12;
 		setTimeout(function(){
 			self.div_navi.fadeOut( self.fadeout );
-		},self.timeout1);
+		},11000/*self.timeout1*/);
 	}
+	
 	this.tutorial12 = function(){
 		self.div_navi[0].className = "tutorial12";
 		self.div_navi.fadeIn( self.fadein );
@@ -360,6 +363,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial13 = function(){
 		self.div_3d[0].className = "tutorial13";
 		self.div_3d.fadeIn( self.fadein );
@@ -370,6 +374,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial14 = function(){
 		self.div_3d[0].className = "tutorial14";
 		self.div_3d.fadeIn( self.fadein );
@@ -379,8 +384,8 @@ function tutorial(){
 				self.tutorialNext();
 			} );
 		},self.timeout);
-
 	}
+	
 	this.tutorial15 = function(){
 		self.div_3d[0].className = "tutorial15";
 		self.setTutorialBackground();
@@ -394,14 +399,16 @@ function tutorial(){
 			},self.crmk1time);
 		},self.timeout1);
 	}
+	
 	this.tutorial16 = function(){
 		self.div_navi[0].className = "tutorial16";
 		self.div_navi.fadeIn( self.fadein );
 		self.tutorial_count = 17;
 		setTimeout(function(){
 			self.div_navi.fadeOut( self.fadeout );
-		},self.timeout1);
+		},10000);
 	}
+	
 	this.tutorial17 = function(){
 		self.div_navi[0].className = "tutorial17";
 		self.div_navi.fadeIn( self.fadein );
@@ -410,6 +417,7 @@ function tutorial(){
 			self.div_navi.fadeOut( self.fadeout );
 		},self.timeout);
 	}
+	
 	this.tutorial18 = function(){
 		self.div_3d[0].className = "tutorial18";
 		self.div_3d.fadeIn( self.fadein );
@@ -420,6 +428,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial19 = function(){
 		self.div_3d[0].className = "tutorial19";
 		self.div_3d.fadeIn( self.fadein );
@@ -430,6 +439,7 @@ function tutorial(){
 			} );
 		},self.timeout2);
 	}
+	
 	this.tutorial20 = function(){
 		self.div_3d[0].className = "tutorial20";
 		self.tutorial_count = 21;
@@ -446,6 +456,7 @@ function tutorial(){
 			},self.crmk2time);
 		},2000)
 	}
+	
 	this.tutorial21 = function(){
 		self.div_3d[0].className = "tutorial21";
 		self.tutorial_count = 22;
@@ -465,6 +476,7 @@ function tutorial(){
 			},25000);
 		},2000);
 	}
+	
 	this.tutorial22 = function(){
 		paringZone.unparingPrepare();
 		self.div_3d[0].className = "tutorial22";
@@ -476,6 +488,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial23 = function(){
 		self.div_navi[0].className = "tutorial23";
 		self.div_navi.fadeIn( self.fadein );
@@ -486,6 +499,7 @@ function tutorial(){
 			} );
 		},self.timeout1);
 	}
+	
 	this.tutorial24 = function(){
 		self.div_navi[0].className = "tutorial24";
 		self.div_navi.fadeIn( self.fadein );
@@ -494,6 +508,7 @@ function tutorial(){
 			self.div_navi.fadeOut( self.fadeout );
 		},self.timeout1);
 	}
+	
 	this.tutorial25 = function(){
 		self.div_3d[0].className = "tutorial25";
 		self.div_3d.fadeIn( self.fadein );
@@ -504,6 +519,7 @@ function tutorial(){
 			} );
 		},self.timeout);
 	}
+	
 	this.tutorial26 = function(){
 		self.div_3d[0].className = "tutorial26";
 		self.div_3d.fadeIn( self.fadein );
@@ -514,6 +530,7 @@ function tutorial(){
 			} );
 		},self.timeout);
 	}
+	
 	this.tutorial27 = function(){
 		self.div_3d[0].className = "tutorial27";
 		self.div_3d.fadeIn( self.fadein );
@@ -522,16 +539,17 @@ function tutorial(){
 			self.div_3d.fadeOut( self.fadeout );
 		},self.timeout2);
 	}
+	this.tutorial28Navi = function(){
+		self.div_navi[0].className = "tutorial28-navi";
+		self.div_navi.fadeIn( self.endingtime );
+	}
 	this.tutorial28 = function(){
 		self.div_3d[0].className = "tutorial28";
-		self.div_navi[0].className = "tutorial28-navi";
 		self.div_3d.fadeIn( self.endingtime );
-		self.div_navi.fadeIn( self.endingtime );
 		setTimeout(function(){
 			location.reload();
 		},10000);
 	}
-
 
 	this.crmk1 = function(){
 		$("#crmk1").css({"display":"block"});

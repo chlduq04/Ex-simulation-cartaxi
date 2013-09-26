@@ -263,6 +263,7 @@
 }
 
 .bn-button {
+	float:left;
 	margin-top: 40px;
 	margin-left: 14px;
 	width: 46px;
@@ -270,6 +271,13 @@
 	background: url("../image/navigation/navigation-bottom-button.png");
 	background-position: -50px 0;
 	background-repeat: no-repeat;
+}
+.bn-reset-button{
+	float: left;
+	margin-top: 40px;
+	margin-left: 1160px;
+	width: 46px;
+	height: 45px;
 }
 
 .bnc-1 {

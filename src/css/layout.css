@@ -47,6 +47,7 @@ table {
         background-position:58% -134px;
     }
 }
+
 @-webkit-keyframes road-out {
     from{
         background-position:58% -900px;
@@ -55,6 +56,7 @@ table {
         background-position:58% -134px;
     }
 }
+
 .road {
 	float: left;
 	width: 1280px;

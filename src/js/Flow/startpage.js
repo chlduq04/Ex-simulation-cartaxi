@@ -18,6 +18,11 @@ function startpage(){
 		self.replaybuttonClick();
 		self.loadingBar();
 		start.setPersent();
+		setTimeout(function(){
+			self.video.play();
+			simul.drawLoad();
+			simul.init();
+		},8000);
 	}
 	this.setPersent = function(){
 		this.persent+=10;
@@ -44,6 +49,7 @@ function startpage(){
 			$("#sp-startbutton-light").removeClass("sp-startbutton-light").addClass("sp-startbutton-light-down");
 			$("#opening").css({"display":"none"});
 			$("#startpage").fadeOut(500,function(){
+				front.settingSound();
 				$("#road").fadeIn(500,function(){
 					self.simulation_reset();					
 				});
@@ -54,24 +60,14 @@ function startpage(){
 		this.simulation_start = false;
 		setTimeout(function () {
 			self.simulation();
-		},50);
+		},200);
 	}
 	this.simulation = function(){
 		this.simulation_start = true;
-//		simul = new Traffic({
-//		drawCar3D : gl.drawCar3D,
-//		drawCarBack3D : gl.drawCarBack3D,
-//		deleteCar3D : gl.deleteCar,
-//		camera3D : gl.controlCamera,
-//		initCamera3D : gl.initCamera,
-//		render3D : gl.rendering,
-//		drawPlayer : gl.drawCarPlayer3D
-//		});
-		front.settingSound();
-		simul.drawLoad();
-		simul.init();
 		self.myLoop();
-		tutorials.init();
+		setTimeout(function(){
+			tutorials.init();
+		});
 	}
 	this.myLoop = function(){           
 		setTimeout(function () {    

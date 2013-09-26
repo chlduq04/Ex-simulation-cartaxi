@@ -1,0 +1,25 @@
+.bnc-video {
+	background: black;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	display: none;
+}
+
+.bnc-video-start {
+	display:block;
+	width: 10px;
+	height: 10px;
+	-webkit-transform-origin: center center;
+	-webkit-transform: scale(2);
+	-webkit-transition: 10s;
+}
+
+.bnc-video-end {
+	display:block;
+	width: 10px;
+	height: 10px;
+	-webkit-transform-origin: center center;
+	-webkit-transform: scale(1);
+	-webkit-transition: 10s;
+}

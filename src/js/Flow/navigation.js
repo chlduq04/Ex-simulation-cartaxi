@@ -60,6 +60,10 @@ function navigation(){
 				},200);
 			}
 		});
+		$("#bn-reset-button").click(function(){
+			location.reload();
+		});
+		
 	}
 
 	this.navigationBottomSlideUp = function(){
